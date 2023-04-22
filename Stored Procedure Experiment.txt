@@ -1,0 +1,127 @@
+CONNECT THE DATEBASE:
+
+connect sys as sysdba;
+create user name identified by password;
+grant connect to name;
+grant all privileges to name;
+connect name;
+
+
+2.CREATE TABLE:
+create table customer(NAME VARCHAR(20),GENDER VARCHAR(6),ADDRESS VARCHAR(20));
+
+
+3.Insert 5rows into table:
+
+insert into customer values('Gugan','Male','Chennai');
+
+insert into customer values('Salamon','Male','Kolkata');
+
+insert into customer values('Bharath','Male','Kerala');
+
+insert into customer values('Mubeer','Male','Mumbai');
+
+insert into customer values('Subramani','Male','Andra');
+
+insert into customer values('Vignesh','Male','Delhi');
+
+
+
+DISPLAY THE TABLE:
+select * from customer;
+
+
+
+4.PROCEDURE FOR INSERTING:
+
+set serveroutput on;
+create or replace procedure insertcustomer(p_name customer.name%type,p_gender customer.gender%type,p_address customer.address%type)
+is
+begin
+insert into customer(name,gender,address)
+values(p_name,p_gender,p_address);
+commit;
+end;
+/
+
+execute insertcustomer('Jepril','Male','bhopal');
+
+
+DISPALY THE UPDATED TABLE:
+select * from customer;
+
+
+3.PROCEDURE FOR UPDATING:
+create or replace procedure updatecustomer(p_name in customer.name%type,p_gender in customer.gender%type,p_address in customer.address%type)
+is
+begin
+update customer set gender=p_gender,address=p_address where name=p_name;
+commit;
+end;
+/
+
+
+execute updatecustomer('jepril','Male','Karnada');
+
+
+select * from customer;
+
+
+PROCEDURE FOR DELETING:
+ 
+create or replace procedure deletecustomer(p_name customer.name%type)
+is
+begin
+delete from customer where name=p_name;
+end;
+/
+
+
+
+execute deletecustomer('Jepril');
+
+
+select * from customer;
+
+
+
+PROCEDURE FOR INSERTING:
+
+set serveroutput on
+create or replace procedure selectcustomer(p_name customer.name%type)
+is
+p_address varchar(20);
+begin
+select address into p_address
+from customer where name='p_name';
+dbms_output.put_line('p_name='||p_name);
+dbms_output.put_line('p_address='||p_address);
+commit;
+/
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
