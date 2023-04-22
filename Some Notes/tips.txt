@@ -1,1 +1,2 @@
-
+Install oracle 11g in yours system
+type all commends in run sql  
