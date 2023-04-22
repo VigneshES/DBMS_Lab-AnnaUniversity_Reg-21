@@ -1,0 +1,73 @@
+connect sys as sysdba;
+create user name identified by password;
+grant connect to name;
+grant all privileges to name;
+connect name;
+
+//if table customer table already created drop the table
+using command  "drop table customer"then enter
+create table cus(ID int,primary key(id),NAME varchar(20),
+AGE integer,ADDRESS varchar(20),SALARY integer);
+
+insert into customer values(1,'ajay',22,'ahmedabad',2000);
+insert into customer values(2,'akash',42,'delhi',5000);
+insert into customer values(3,'alan',35,'delhi',1500);
+insert into customer values(4,'ramesh',19,'kota',8500);
+insert into customer values(5,'varun',19,'mumbai',2000);
+
+
+CREATING VIEW:
+create view customer_view as select name,age from customer;
+
+select * from customer_view;
+
+CREATE A TABLE AND INSERT VALUES:
+
+create table cus(ID int,primary key(id),NAME varchar(20),
+AGE integer,ADDRESS varchar(20),SALARY integer);
+
+
+insert into cus values(1,'akhil',21,'Chennai',9500);
+insert into cus values(2,'Hardik',32,'Bangalore',11500);
+insert into cus values(3,'varun',27,'Madurai',23500);
+insert into cus values(4,'Arun',44,'Delhi',7500);
+insert into cus values(5,'Kaushik',24,'Mumbai',31500);
+
+CREATE ANOTHER VIEW FOR ANOTHER TABLE:
+create view cus_view as select name,age,address from cus where age>25;
+
+select * from cus_view;
+
+
+UPDATING VIEW:
+
+update customer_view set age=39 where name='ajay';
+
+
+DISPLAY THE VIEW:
+
+select * from customer_view;
+
+DELETE A ROW FROM VIEW: 
+delete from customer_view where age=42;
+
+DROP VIEW:
+drop view customer_view;
+
+
+
+
+INDEX:
+set autotrace on explain;
+select * from cus_view;
+
+CREATING INDEX:
+create index cusindex on cus(address);
+
+select * from cus where address='Delhi';
+
+RENAME THE INDEX:
+alter index cusindex rename to idcolumn;
+
+DROP INDEX:
+drop index idcolumn;
